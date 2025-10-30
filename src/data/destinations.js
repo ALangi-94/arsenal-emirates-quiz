@@ -51,10 +51,10 @@ export const destinations = [
     description: "Immerse yourself in a city where ancient tradition seamlessly blends with cutting-edge technology.",
     personality: "You're detail-oriented and appreciate perfection in every aspect. Like Tomiyasu's defensive precision, you value discipline, quality, and cultural authenticity.",
     traits: {
-      energy: 4,
-      luxury: 3,
+      energy: 3,
+      luxury: 2,
       culture: 5,
-      relaxation: 3
+      relaxation: 2
     },
     highlights: [
       "Explore ancient temples and modern skyscrapers",
@@ -84,10 +84,10 @@ export const destinations = [
     description: "The iconic capital where history, culture, and modern life create an unforgettable experience.",
     personality: "You're loyal, grounded, and appreciate the classics. Like Saka representing his hometown, you value authenticity, heritage, and staying true to your roots.",
     traits: {
-      energy: 4,
-      luxury: 2,
-      culture: 5,
-      relaxation: 2
+      energy: 5,
+      luxury: 1,
+      culture: 4,
+      relaxation: 1
     },
     highlights: [
       "Visit iconic landmarks like Big Ben, Tower Bridge, and Buckingham Palace",
@@ -184,9 +184,9 @@ export const destinations = [
     personality: "You're energetic, passionate, and live life to the fullest. Like Gabriel Jesus's dynamic style, you bring enthusiasm and spontaneity to everything.",
     traits: {
       energy: 5,
-      luxury: 2,
-      culture: 5,
-      relaxation: 3
+      luxury: 1,
+      culture: 4,
+      relaxation: 2
     },
     highlights: [
       "Visit Christ the Redeemer and Sugarloaf Mountain",
@@ -216,10 +216,10 @@ export const destinations = [
     description: "The entertainment capital where sunshine, beaches, and Hollywood dreams collide.",
     personality: "You're ambitious, adventurous, and always looking ahead. Like Martinelli's explosive potential, you're a rising star ready to make your mark.",
     traits: {
-      energy: 5,
+      energy: 4,
       luxury: 4,
-      culture: 3,
-      relaxation: 3
+      culture: 2,
+      relaxation: 4
     },
     highlights: [
       "Explore Hollywood, Beverly Hills, and celebrity culture",
