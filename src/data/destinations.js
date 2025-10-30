@@ -85,9 +85,9 @@ export const destinations = [
     personality: "You're loyal, grounded, and appreciate the classics. Like Saka representing his hometown, you value authenticity, heritage, and staying true to your roots.",
     traits: {
       energy: 4,
-      luxury: 3,
+      luxury: 2,
       culture: 5,
-      relaxation: 3
+      relaxation: 2
     },
     highlights: [
       "Visit iconic landmarks like Big Ben, Tower Bridge, and Buckingham Palace",
@@ -117,10 +117,10 @@ export const destinations = [
     description: "A Mediterranean masterpiece where Gaudí's architecture meets world-class beaches and cuisine.",
     personality: "You're strategic, artistic, and appreciate style with substance. Like Arteta's tactical genius, you plan carefully but embrace creative expression.",
     traits: {
-      energy: 4,
+      energy: 3,
       luxury: 4,
       culture: 5,
-      relaxation: 4
+      relaxation: 5
     },
     highlights: [
       "Marvel at Gaudí's architectural wonders like Sagrada Familia",
@@ -184,9 +184,9 @@ export const destinations = [
     personality: "You're energetic, passionate, and live life to the fullest. Like Gabriel Jesus's dynamic style, you bring enthusiasm and spontaneity to everything.",
     traits: {
       energy: 5,
-      luxury: 3,
-      culture: 4,
-      relaxation: 4
+      luxury: 2,
+      culture: 5,
+      relaxation: 3
     },
     highlights: [
       "Visit Christ the Redeemer and Sugarloaf Mountain",
@@ -249,9 +249,9 @@ export const destinations = [
     description: "Find your zen in this tropical paradise of temples, beaches, and spiritual awakening.",
     personality: "You're balanced, thoughtful, and seek harmony. Like Havertz's composed playing style, you value inner peace and mindful experiences.",
     traits: {
-      energy: 3,
+      energy: 2,
       luxury: 3,
-      culture: 4,
+      culture: 3,
       relaxation: 5
     },
     highlights: [
