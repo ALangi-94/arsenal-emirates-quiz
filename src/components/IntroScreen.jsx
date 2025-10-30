@@ -56,9 +56,9 @@ const IntroScreen = ({ onStart }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={onStart}
-              className="mx-auto bg-white text-arsenal-red font-heading text-2xl md:text-3xl py-3 px-12 rounded-lg shadow-2xl hover:bg-gray-100 transition-colors uppercase"
+              className="mx-auto block bg-white text-arsenal-red font-heading text-2xl md:text-3xl py-3 px-12 rounded-lg shadow-2xl hover:bg-gray-100 transition-colors uppercase"
             >
-              Start Quiz
+              Start Your Journey
             </motion.button>
           </div>
         </div>
@@ -86,11 +86,11 @@ const IntroScreen = ({ onStart }) => {
                   className="text-center"
                 >
                   <h2 className="text-2xl md:text-3xl font-heading text-gray-900 mb-4">
-                    COMPLETE THE QUIZ TO WIN
+                    COMPLETE THE QUIZ FOR A CHANCE TO WIN
                   </h2>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4 items-center">
                   <motion.div
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -100,6 +100,15 @@ const IntroScreen = ({ onStart }) => {
                     <p className="text-xl md:text-2xl lg:text-3xl font-heading text-arsenal-red text-center leading-tight">
                       ALL-EXPENSES-PAID TRIP TO YOUR MATCHED DESTINATION
                     </p>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.7 }}
+                    className="hidden md:block text-center"
+                  >
+                    <p className="text-2xl font-heading text-gray-700">OR</p>
                   </motion.div>
 
                   <motion.div
@@ -113,6 +122,15 @@ const IntroScreen = ({ onStart }) => {
                     </p>
                   </motion.div>
                 </div>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.7 }}
+                  className="md:hidden text-center my-2"
+                >
+                  <p className="text-xl font-heading text-gray-700">OR</p>
+                </motion.div>
 
                 <motion.p
                   initial={{ opacity: 0 }}
@@ -153,23 +171,23 @@ const IntroScreen = ({ onStart }) => {
             </div>
 
             <div className="bg-gray-50 rounded-lg p-6 mb-8">
-              <h3 className="font-accent font-semibold text-lg mb-3 text-gray-800">
+              <h3 className="font-accent font-semibold text-lg mb-3 text-gray-800 text-center">
                 What You'll Discover:
               </h3>
               <ul className="space-y-2 text-gray-700 font-body">
-                <li className="flex items-start">
+                <li className="flex items-center justify-center">
                   <span className="text-arsenal-red mr-2">✓</span>
                   <span>Your perfect travel destination matched by an Arsenal player</span>
                 </li>
-                <li className="flex items-start">
+                <li className="flex items-center justify-center">
                   <span className="text-arsenal-red mr-2">✓</span>
                   <span>Personalized travel insights based on your preferences</span>
                 </li>
-                <li className="flex items-start">
+                <li className="flex items-center justify-center">
                   <span className="text-arsenal-red mr-2">✓</span>
                   <span>Exclusive travel recommendations and Emirates flight routes</span>
                 </li>
-                <li className="flex items-start">
+                <li className="flex items-center justify-center">
                   <span className="text-arsenal-red mr-2">✓</span>
                   <span>500 bonus Emirates Skywards miles added to your profile</span>
                 </li>
