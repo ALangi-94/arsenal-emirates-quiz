@@ -220,7 +220,7 @@ const ResultsScreen = ({ result, onRestart }) => {
             🎁 <strong>500 Emirates Skywards Miles</strong> added to your profile
           </p>
           <p className="font-body mb-6">
-            Share your result on social media to enter the draw for an all-expenses-paid trip to {destination.name}!
+            Share your result on social media to enter the draw for an all-expenses-paid trip to {destination.name} and a chance to win one of 10 signed Arsenal home shirts!
           </p>
 
           <div className="flex flex-wrap gap-3">
