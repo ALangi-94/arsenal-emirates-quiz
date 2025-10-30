@@ -59,6 +59,18 @@ const IntroScreen = ({ onStart }) => {
             transition={{ delay: 1 }}
             className="space-y-6"
           >
+            {/* Disclaimer */}
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 1.2 }}
+              className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-4 mb-6"
+            >
+              <p className="text-sm md:text-base font-body text-gray-800 text-center">
+                <span className="font-bold text-yellow-800">⚠️ IMPORTANT:</span> This is a technical demo only and has no official capacity with Arsenal FC or Emirates.
+              </p>
+            </motion.div>
+
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div className="text-center">
                 <div className="text-4xl font-heading text-arsenal-red mb-2">15</div>
