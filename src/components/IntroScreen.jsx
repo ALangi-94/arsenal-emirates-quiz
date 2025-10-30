@@ -28,17 +28,36 @@ const IntroScreen = ({ onStart }) => {
           </motion.div>
 
           {/* Logos and Text Section */}
-          <div className="bg-gradient-to-r from-arsenal-red to-emirates-red p-8">
-            <Header />
+          <div className="bg-gradient-to-r from-arsenal-red to-emirates-red p-6 md:p-8">
+            {/* Logos and Title on Same Line */}
+            <div className="flex items-center justify-between gap-4 mb-6">
+              <motion.img
+                initial={{ x: -30, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                src="/images/logos/arsenal-logo.png"
+                alt="Arsenal FC"
+                className="h-16 md:h-20 lg:h-24 object-contain flex-shrink-0"
+              />
 
-            <motion.h1
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="text-5xl md:text-7xl font-heading text-white text-center mb-4 mt-4"
-            >
-              Find Your Perfect Destination
-            </motion.h1>
+              <motion.h1
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-heading text-white text-center flex-1"
+              >
+                Find Your Perfect Destination
+              </motion.h1>
+
+              <motion.img
+                initial={{ x: 30, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                src="/images/logos/emirates-logo.png"
+                alt="Emirates"
+                className="h-16 md:h-20 lg:h-24 object-contain flex-shrink-0"
+              />
+            </div>
 
             <motion.p
               initial={{ y: 20, opacity: 0 }}
