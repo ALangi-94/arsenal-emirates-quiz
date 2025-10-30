@@ -90,14 +90,14 @@ const IntroScreen = ({ onStart }) => {
                   </h2>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 gap-4 items-center">
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-3 md:gap-4 items-center">
                   <motion.div
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 1.6 }}
-                    className="bg-white/80 backdrop-blur-sm rounded-lg p-5 shadow-md border border-[#C4A574]/20"
+                    className="bg-white/80 backdrop-blur-sm rounded-lg p-4 md:p-5 shadow-md border border-[#C4A574]/20"
                   >
-                    <p className="text-xl md:text-2xl lg:text-3xl font-heading text-arsenal-red text-center leading-tight">
+                    <p className="text-lg md:text-xl lg:text-2xl font-heading text-arsenal-red text-center leading-tight">
                       ALL-EXPENSES-PAID TRIP TO YOUR MATCHED DESTINATION
                     </p>
                   </motion.div>
@@ -106,31 +106,22 @@ const IntroScreen = ({ onStart }) => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.7 }}
-                    className="hidden md:block text-center"
+                    className="text-center px-2"
                   >
-                    <p className="text-2xl font-heading text-gray-700">OR</p>
+                    <p className="text-xl md:text-2xl font-heading text-gray-700">OR</p>
                   </motion.div>
 
                   <motion.div
                     initial={{ x: 20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 1.8 }}
-                    className="bg-white/80 backdrop-blur-sm rounded-lg p-5 shadow-md border border-[#C4A574]/20"
+                    className="bg-white/80 backdrop-blur-sm rounded-lg p-4 md:p-5 shadow-md border border-[#C4A574]/20"
                   >
-                    <p className="text-xl md:text-2xl lg:text-3xl font-heading text-arsenal-red text-center leading-tight">
+                    <p className="text-lg md:text-xl lg:text-2xl font-heading text-arsenal-red text-center leading-tight">
                       MATCH-WORN SIGNED ARSENAL HOME KIT
                     </p>
                   </motion.div>
                 </div>
-
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.7 }}
-                  className="md:hidden text-center my-2"
-                >
-                  <p className="text-xl font-heading text-gray-700">OR</p>
-                </motion.div>
 
                 <motion.p
                   initial={{ opacity: 0 }}
