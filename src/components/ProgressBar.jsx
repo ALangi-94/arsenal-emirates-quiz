@@ -16,13 +16,16 @@ const ProgressBar = ({ current, total }) => {
 
       <div className="relative h-3 bg-white/20 rounded-full overflow-visible">
         <motion.div
+          initial={false}
           animate={{ width: `${percentage}%` }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="h-full bg-gradient-to-r from-arsenal-red to-emirates-gold rounded-full"
+          style={{ width: `${percentage}%` }}
         />
 
         {/* Animated Emirates plane */}
         <motion.div
+          initial={false}
           animate={{ left: `${percentage}%` }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10"

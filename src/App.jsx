@@ -66,8 +66,9 @@ function App() {
 
         {screen === 'quiz' && (
           <QuizQuestion
-            key={`question-${currentQuestionIndex}`}
+            key="quiz"
             question={questions[currentQuestionIndex]}
+            questionIndex={currentQuestionIndex}
             onAnswer={handleAnswer}
             currentQuestion={currentQuestionIndex + 1}
             totalQuestions={questions.length}

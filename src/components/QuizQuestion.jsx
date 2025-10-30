@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import ProgressBar from './ProgressBar';
 import Header from './Header';
 
-const QuizQuestion = ({ question, onAnswer, currentQuestion, totalQuestions }) => {
+const QuizQuestion = ({ question, questionIndex, onAnswer, currentQuestion, totalQuestions }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleSelect = (option) => {
@@ -22,14 +22,15 @@ const QuizQuestion = ({ question, onAnswer, currentQuestion, totalQuestions }) =
       <div className="max-w-3xl w-full mx-auto flex-1 flex flex-col justify-center py-2">
         <ProgressBar current={currentQuestion} total={totalQuestions} />
 
-        <motion.div
-          key={question.id}
-          initial={{ x: 50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: -50, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="bg-white rounded-xl shadow-2xl p-4 md:p-6 max-h-[calc(100vh-200px)] overflow-y-auto"
-        >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={questionIndex}
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -50, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="bg-white rounded-xl shadow-2xl p-4 md:p-6 max-h-[calc(100vh-200px)] overflow-y-auto"
+          >
           {/* Question */}
           <motion.h2
             initial={{ y: 20, opacity: 0 }}
@@ -76,7 +77,8 @@ const QuizQuestion = ({ question, onAnswer, currentQuestion, totalQuestions }) =
               </motion.button>
             ))}
           </div>
-        </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );
