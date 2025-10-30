@@ -53,31 +53,32 @@ const SubscribeGate = ({ onSubmit }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const subscribeToSubstack = async (email) => {
+  const subscribeToSubstack = async (email, firstName, lastName) => {
     try {
-      const response = await fetch(`${SUBSTACK_URL}/api/v1/free`, {
+      // Call our serverless function instead of Substack directly
+      const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           email: email,
-          first_url: window.location.href,
-          first_referrer: document.referrer,
-          current_url: window.location.href,
+          firstName: firstName,
+          lastName: lastName,
         }),
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         return { success: true };
       } else {
-        return { success: false, error: 'Failed to subscribe' };
+        console.error('Subscription error:', data);
+        return { success: false, error: data.error || 'Failed to subscribe' };
       }
     } catch (error) {
       console.error('Substack subscription error:', error);
-      // If CORS error, we'll still proceed to show results
-      // The user can manually subscribe via the link
-      return { success: false, error: 'CORS error - will show Substack link' };
+      return { success: false, error: 'Network error' };
     }
   };
 
@@ -88,8 +89,12 @@ const SubscribeGate = ({ onSubmit }) => {
       setIsSubmitting(true);
       setSubmitStatus(null);
 
-      // Try to subscribe to Substack
-      const result = await subscribeToSubstack(formData.email);
+      // Try to subscribe to Substack via our serverless function
+      const result = await subscribeToSubstack(
+        formData.email,
+        formData.firstName,
+        formData.lastName
+      );
 
       if (result.success) {
         setSubmitStatus('success');
