@@ -16,12 +16,7 @@ const QuizQuestion = ({ question, onAnswer, currentQuestion, totalQuestions }) =
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="min-h-screen flex flex-col p-2 md:p-4"
-    >
+    <div className="min-h-screen flex flex-col p-2 md:p-4">
       <Header compact />
 
       <div className="max-w-3xl w-full mx-auto flex-1 flex flex-col justify-center py-2">
@@ -83,7 +78,7 @@ const QuizQuestion = ({ question, onAnswer, currentQuestion, totalQuestions }) =
           </div>
         </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

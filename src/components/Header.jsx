@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const Header = ({ compact = false }) => {
   const arsenalSize = compact ? "h-16 md:h-20" : "h-24 md:h-32";
-  const emiratesSize = compact ? "h-12 md:h-14" : "h-16 md:h-24";
+  const emiratesSize = compact ? "h-16 md:h-20" : "h-24 md:h-32";
   const padding = compact ? "p-2 md:p-3" : "p-4 md:p-6";
 
   return (

@@ -16,7 +16,6 @@ const ProgressBar = ({ current, total }) => {
 
       <div className="relative h-3 bg-white/20 rounded-full overflow-visible">
         <motion.div
-          initial={{ width: 0 }}
           animate={{ width: `${percentage}%` }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="h-full bg-gradient-to-r from-arsenal-red to-emirates-gold rounded-full"
@@ -24,7 +23,6 @@ const ProgressBar = ({ current, total }) => {
 
         {/* Animated Emirates plane */}
         <motion.div
-          initial={{ left: 0 }}
           animate={{ left: `${percentage}%` }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10"
