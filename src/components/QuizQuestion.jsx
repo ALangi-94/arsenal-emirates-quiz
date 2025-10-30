@@ -17,9 +17,11 @@ const QuizQuestion = ({ question, questionIndex, onAnswer, currentQuestion, tota
 
   return (
     <div className="min-h-screen flex flex-col p-2 md:p-4">
-      <Header compact />
+      <div className="w-full">
+        <Header compact />
+      </div>
 
-      <div className="max-w-3xl w-full mx-auto flex-1 flex flex-col justify-center py-2">
+      <div className="max-w-3xl w-full mx-auto mt-4">
         <ProgressBar current={currentQuestion} total={totalQuestions} />
 
         <AnimatePresence mode="wait">
@@ -29,7 +31,8 @@ const QuizQuestion = ({ question, questionIndex, onAnswer, currentQuestion, tota
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -50, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="bg-white rounded-xl shadow-2xl p-4 md:p-6 max-h-[calc(100vh-200px)] overflow-y-auto"
+            className="bg-white rounded-xl shadow-2xl p-4 md:p-6 overflow-y-auto"
+            style={{ minHeight: '400px', maxHeight: 'calc(100vh - 280px)' }}
           >
           {/* Question */}
           <motion.h2
