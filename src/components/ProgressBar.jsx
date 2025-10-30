@@ -5,7 +5,7 @@ const ProgressBar = ({ current, total }) => {
 
   return (
     <div className="w-full mb-8">
-      <div className="flex justify-between items-center mb-2">
+      <div className="flex justify-between items-center mb-6">
         <span className="text-sm font-body text-white/80">
           Question {current} of {total}
         </span>
@@ -41,7 +41,7 @@ const ProgressBar = ({ current, total }) => {
       </div>
 
       {/* Section indicator */}
-      <div className="mt-2 text-center">
+      <div className="mt-6 text-center">
         <span className="text-xs font-body text-white/60">
           {current <= 5 && "Travel Personality"}
           {current > 5 && current <= 10 && "Lifestyle & Preferences"}
