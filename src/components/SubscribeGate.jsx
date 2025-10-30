@@ -1,116 +1,33 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
-import { FaEnvelope, FaUser, FaLinkedin } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 import Header from './Header';
 
 const SubscribeGate = ({ onSubmit }) => {
-  const [formData, setFormData] = useState({
-    email: '',
-    firstName: '',
-    lastName: '',
-    linkedin: '',
-    emailConsent: false,
-    termsConsent: false
-  });
-
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
-
+  const [hasSubscribed, setHasSubscribed] = useState(false);
   const SUBSTACK_URL = 'https://thesportsstack.substack.com';
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
-    }
-  };
-
-  const validate = () => {
-    const newErrors = {};
-
-    if (!formData.email) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
-    }
-
-    if (!formData.firstName) {
-      newErrors.firstName = 'First name is required';
-    }
-
-    if (!formData.termsConsent) {
-      newErrors.termsConsent = 'You must agree to terms and conditions';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const subscribeToSubstack = async (email, firstName, lastName) => {
-    try {
-      // Call our serverless function instead of Substack directly
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          firstName: firstName,
-          lastName: lastName,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        return { success: true };
-      } else {
-        console.error('Subscription error:', data);
-        return { success: false, error: data.error || 'Failed to subscribe' };
+  useEffect(() => {
+    // Listen for form submissions from the Substack iframe
+    const handleMessage = (event) => {
+      // Check if message is from Substack indicating successful subscription
+      if (event.data && typeof event.data === 'string') {
+        if (event.data.includes('subscribe') || event.data.includes('success')) {
+          setHasSubscribed(true);
+          // Proceed to results after a brief delay
+          setTimeout(() => {
+            onSubmit({ email: 'subscribed@substack.com' }); // Dummy data since we don't capture it
+          }, 1500);
+        }
       }
-    } catch (error) {
-      console.error('Substack subscription error:', error);
-      return { success: false, error: 'Network error' };
-    }
-  };
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [onSubmit]);
 
-    if (validate()) {
-      setIsSubmitting(true);
-      setSubmitStatus(null);
-
-      // Try to subscribe to Substack via our serverless function
-      const result = await subscribeToSubstack(
-        formData.email,
-        formData.firstName,
-        formData.lastName
-      );
-
-      if (result.success) {
-        setSubmitStatus('success');
-      } else {
-        // Even if Substack fails, we still show the results
-        // User can manually subscribe from the results page
-        setSubmitStatus('partial');
-      }
-
-      setIsSubmitting(false);
-
-      // Wait a moment to show success message, then proceed
-      setTimeout(() => {
-        onSubmit(formData);
-      }, 1000);
-    }
+  const handleSkip = () => {
+    // Allow users to skip if they're already subscribed
+    onSubmit({ email: 'skipped@example.com' });
   };
 
   return (
@@ -151,164 +68,57 @@ const SubscribeGate = ({ onSubmit }) => {
               Your Perfect Destination Awaits...
             </h2>
             <p className="text-lg font-body text-white/90">
-              Subscribe to discover which Arsenal star shares your travel DNA and unlock your personalized destination guide
+              Subscribe to The Sports Stack to discover which Arsenal star shares your travel DNA and unlock your personalized destination guide
             </p>
           </motion.div>
         </div>
 
-        {/* Form */}
+        {/* Substack Embed Form */}
         <div className="p-8 md:p-10">
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-body font-medium text-gray-700 mb-2">
-                Email Address <span className="text-arsenal-red">*</span>
-              </label>
-              <div className="relative">
-                <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`w-full pl-12 pr-4 py-3 border-2 rounded-lg font-body focus:outline-none focus:ring-2 focus:ring-arsenal-red/50 ${
-                    errors.email ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                  placeholder="your.email@example.com"
-                />
-              </div>
-              {errors.email && (
-                <p className="mt-1 text-sm text-red-500 font-body">{errors.email}</p>
-              )}
-            </div>
-
-            {/* Name fields */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-body font-medium text-gray-700 mb-2">
-                  First Name <span className="text-arsenal-red">*</span>
-                </label>
-                <div className="relative">
-                  <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    className={`w-full pl-12 pr-4 py-3 border-2 rounded-lg font-body focus:outline-none focus:ring-2 focus:ring-arsenal-red/50 ${
-                      errors.firstName ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                    placeholder="John"
-                  />
-                </div>
-                {errors.firstName && (
-                  <p className="mt-1 text-sm text-red-500 font-body">{errors.firstName}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-body font-medium text-gray-700 mb-2">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg font-body focus:outline-none focus:ring-2 focus:ring-arsenal-red/50"
-                  placeholder="Doe"
-                />
-              </div>
-            </div>
-
-            {/* LinkedIn (optional) */}
-            <div>
-              <label className="block text-sm font-body font-medium text-gray-700 mb-2">
-                LinkedIn Profile (optional)
-              </label>
-              <div className="relative">
-                <FaLinkedin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                <input
-                  type="url"
-                  name="linkedin"
-                  value={formData.linkedin}
-                  onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg font-body focus:outline-none focus:ring-2 focus:ring-arsenal-red/50"
-                  placeholder="https://linkedin.com/in/yourprofile"
-                />
-              </div>
-            </div>
-
-            {/* Checkboxes */}
-            <div className="space-y-3">
-              <label className="flex items-start cursor-pointer">
-                <input
-                  type="checkbox"
-                  name="emailConsent"
-                  checked={formData.emailConsent}
-                  onChange={handleChange}
-                  className="mt-1 mr-3 w-5 h-5 text-arsenal-red border-gray-300 rounded focus:ring-arsenal-red"
-                />
-                <span className="text-sm font-body text-gray-700">
-                  Yes, send me travel inspiration and Arsenal content
-                </span>
-              </label>
-
-              <label className="flex items-start cursor-pointer">
-                <input
-                  type="checkbox"
-                  name="termsConsent"
-                  checked={formData.termsConsent}
-                  onChange={handleChange}
-                  className="mt-1 mr-3 w-5 h-5 text-arsenal-red border-gray-300 rounded focus:ring-arsenal-red"
-                />
-                <span className="text-sm font-body text-gray-700">
-                  I agree to T&Cs and privacy policy <span className="text-arsenal-red">*</span>
-                </span>
-              </label>
-              {errors.termsConsent && (
-                <p className="text-sm text-red-500 font-body">{errors.termsConsent}</p>
-              )}
-            </div>
-
-            {/* Status messages */}
-            {submitStatus === 'success' && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-green-50 border-2 border-green-500 text-green-700 p-4 rounded-lg font-body text-center"
-              >
-                ✓ Successfully subscribed to The Sports Stack!
-              </motion.div>
-            )}
-
-            {submitStatus === 'partial' && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-yellow-50 border-2 border-yellow-500 text-yellow-700 p-3 rounded-lg font-body text-sm text-center"
-              >
-                Note: Subscribe manually at <a href={SUBSTACK_URL} target="_blank" rel="noopener noreferrer" className="underline font-semibold">The Sports Stack</a>
-              </motion.div>
-            )}
-
-            {/* Submit button */}
-            <motion.button
-              whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-              whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-              type="submit"
-              disabled={isSubmitting}
-              className={`w-full bg-arsenal-red text-white font-heading text-3xl py-4 rounded-lg shadow-lg transition-colors ${
-                isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-red-700'
-              }`}
+          {hasSubscribed ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center py-8"
             >
-              {isSubmitting ? 'Subscribing...' : 'Reveal My Destination'}
-            </motion.button>
+              <div className="text-6xl mb-4">✓</div>
+              <h3 className="text-2xl font-heading text-gray-900 mb-2">
+                Thank You for Subscribing!
+              </h3>
+              <p className="font-body text-gray-700">
+                Revealing your destination results...
+              </p>
+            </motion.div>
+          ) : (
+            <div className="space-y-6">
+              <div className="bg-gray-50 rounded-lg p-6">
+                <iframe
+                  src="https://thesportsstack.substack.com/embed"
+                  width="100%"
+                  height="320"
+                  style={{ border: '1px solid #EEE', background: 'white', borderRadius: '8px' }}
+                  frameBorder="0"
+                  scrolling="no"
+                />
+              </div>
 
-            <p className="text-center text-xs text-gray-500 font-body">
-              You'll be subscribed to The Sports Stack newsletter • Your information is secure
-            </p>
-          </form>
+              <div className="text-center">
+                <p className="text-sm font-body text-gray-600 mb-4">
+                  Already subscribed?
+                </p>
+                <button
+                  onClick={handleSkip}
+                  className="text-arsenal-red font-accent font-semibold underline hover:text-red-700 transition-colors"
+                >
+                  Skip to Results →
+                </button>
+              </div>
+
+              <p className="text-center text-xs text-gray-500 font-body">
+                You'll be subscribed to The Sports Stack newsletter • Your information is secure
+              </p>
+            </div>
+          )}
         </div>
       </motion.div>
     </motion.div>
