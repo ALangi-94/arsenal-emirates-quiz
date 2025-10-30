@@ -14,12 +14,12 @@ const ProgressBar = ({ current, total }) => {
         </span>
       </div>
 
-      <div className="relative h-3 bg-white/20 rounded-full overflow-hidden">
+      <div className="relative h-3 bg-white/20 rounded-full overflow-visible">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${percentage}%` }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="h-full bg-gradient-to-r from-arsenal-red to-emirates-gold"
+          className="h-full bg-gradient-to-r from-arsenal-red to-emirates-gold rounded-full"
         />
 
         {/* Animated Emirates plane */}
@@ -27,14 +27,14 @@ const ProgressBar = ({ current, total }) => {
           initial={{ left: 0 }}
           animate={{ left: `${percentage}%` }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10"
           style={{ left: `${percentage}%` }}
         >
-          <div className="bg-white rounded-full p-1 shadow-lg w-8 h-8 flex items-center justify-center">
+          <div className="bg-white rounded-full p-2 shadow-xl w-14 h-14 flex items-center justify-center border-4 border-arsenal-red">
             <img
               src="/images/emirates-plane.png"
               alt="Emirates"
-              className="w-6 h-6 object-contain"
+              className="w-8 h-8 object-contain"
             />
           </div>
         </motion.div>
