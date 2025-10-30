@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import ProgressBar from './ProgressBar';
+import Header from './Header';
 
 const QuizQuestion = ({ question, onAnswer, currentQuestion, totalQuestions }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -19,9 +20,11 @@ const QuizQuestion = ({ question, onAnswer, currentQuestion, totalQuestions }) =
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen flex items-center justify-center p-4"
+      className="min-h-screen flex flex-col p-4"
     >
-      <div className="max-w-3xl w-full">
+      <Header />
+
+      <div className="max-w-3xl w-full mx-auto flex-1 flex flex-col justify-center">
         <ProgressBar current={currentQuestion} total={totalQuestions} />
 
         <motion.div
@@ -32,22 +35,12 @@ const QuizQuestion = ({ question, onAnswer, currentQuestion, totalQuestions }) =
           transition={{ duration: 0.3 }}
           className="bg-white rounded-2xl shadow-2xl p-8 md:p-12"
         >
-          {/* Section tag */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.1 }}
-            className="inline-block bg-arsenal-red/10 text-arsenal-red px-4 py-1 rounded-full text-sm font-inter font-medium mb-6"
-          >
-            {question.section}
-          </motion.div>
-
           {/* Question */}
           <motion.h2
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-3xl md:text-4xl font-bebas text-gray-900 mb-8"
+            className="text-3xl md:text-4xl font-heading text-gray-900 mb-8"
           >
             {question.question}
           </motion.h2>
@@ -63,7 +56,7 @@ const QuizQuestion = ({ question, onAnswer, currentQuestion, totalQuestions }) =
                 whileHover={{ scale: 1.02, x: 5 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleSelect(option)}
-                className={`w-full text-left p-5 rounded-xl border-2 transition-all font-inter ${
+                className={`w-full text-left p-5 rounded-xl border-2 transition-all font-body ${
                   selectedOption?.value === option.value
                     ? 'border-arsenal-red bg-arsenal-red text-white shadow-lg'
                     : 'border-gray-200 bg-white hover:border-arsenal-red/50 hover:shadow-md'

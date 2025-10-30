@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FaEnvelope, FaUser, FaLinkedin } from 'react-icons/fa';
+import Header from './Header';
 
 const SubscribeGate = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -61,13 +62,15 @@ const SubscribeGate = ({ onSubmit }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen flex items-center justify-center p-4"
+      className="min-h-screen flex flex-col p-4"
     >
+      <Header />
+
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="max-w-2xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden"
+        className="max-w-2xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden mx-auto my-auto"
       >
         {/* Header */}
         <div className="bg-gradient-to-r from-arsenal-red to-emirates-red p-8 text-center">
@@ -88,10 +91,10 @@ const SubscribeGate = ({ onSubmit }) => {
               </div>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bebas text-white mb-3">
+            <h2 className="text-4xl md:text-5xl font-heading text-white mb-3">
               Your Perfect Destination Awaits...
             </h2>
-            <p className="text-lg font-inter text-white/90">
+            <p className="text-lg font-body text-white/90">
               Subscribe to discover which Arsenal star shares your travel DNA and unlock your personalized destination guide
             </p>
           </motion.div>
@@ -102,7 +105,7 @@ const SubscribeGate = ({ onSubmit }) => {
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email */}
             <div>
-              <label className="block text-sm font-inter font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-body font-medium text-gray-700 mb-2">
                 Email Address <span className="text-arsenal-red">*</span>
               </label>
               <div className="relative">
@@ -112,21 +115,21 @@ const SubscribeGate = ({ onSubmit }) => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full pl-12 pr-4 py-3 border-2 rounded-lg font-inter focus:outline-none focus:ring-2 focus:ring-arsenal-red/50 ${
+                  className={`w-full pl-12 pr-4 py-3 border-2 rounded-lg font-body focus:outline-none focus:ring-2 focus:ring-arsenal-red/50 ${
                     errors.email ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="your.email@example.com"
                 />
               </div>
               {errors.email && (
-                <p className="mt-1 text-sm text-red-500 font-inter">{errors.email}</p>
+                <p className="mt-1 text-sm text-red-500 font-body">{errors.email}</p>
               )}
             </div>
 
             {/* Name fields */}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-inter font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-body font-medium text-gray-700 mb-2">
                   First Name <span className="text-arsenal-red">*</span>
                 </label>
                 <div className="relative">
@@ -136,19 +139,19 @@ const SubscribeGate = ({ onSubmit }) => {
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
-                    className={`w-full pl-12 pr-4 py-3 border-2 rounded-lg font-inter focus:outline-none focus:ring-2 focus:ring-arsenal-red/50 ${
+                    className={`w-full pl-12 pr-4 py-3 border-2 rounded-lg font-body focus:outline-none focus:ring-2 focus:ring-arsenal-red/50 ${
                       errors.firstName ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="John"
                   />
                 </div>
                 {errors.firstName && (
-                  <p className="mt-1 text-sm text-red-500 font-inter">{errors.firstName}</p>
+                  <p className="mt-1 text-sm text-red-500 font-body">{errors.firstName}</p>
                 )}
               </div>
 
               <div>
-                <label className="block text-sm font-inter font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-body font-medium text-gray-700 mb-2">
                   Last Name
                 </label>
                 <input
@@ -156,7 +159,7 @@ const SubscribeGate = ({ onSubmit }) => {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg font-inter focus:outline-none focus:ring-2 focus:ring-arsenal-red/50"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg font-body focus:outline-none focus:ring-2 focus:ring-arsenal-red/50"
                   placeholder="Doe"
                 />
               </div>
@@ -164,7 +167,7 @@ const SubscribeGate = ({ onSubmit }) => {
 
             {/* LinkedIn (optional) */}
             <div>
-              <label className="block text-sm font-inter font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-body font-medium text-gray-700 mb-2">
                 LinkedIn Profile (optional)
               </label>
               <div className="relative">
@@ -174,7 +177,7 @@ const SubscribeGate = ({ onSubmit }) => {
                   name="linkedin"
                   value={formData.linkedin}
                   onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg font-inter focus:outline-none focus:ring-2 focus:ring-arsenal-red/50"
+                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg font-body focus:outline-none focus:ring-2 focus:ring-arsenal-red/50"
                   placeholder="https://linkedin.com/in/yourprofile"
                 />
               </div>
@@ -190,7 +193,7 @@ const SubscribeGate = ({ onSubmit }) => {
                   onChange={handleChange}
                   className="mt-1 mr-3 w-5 h-5 text-arsenal-red border-gray-300 rounded focus:ring-arsenal-red"
                 />
-                <span className="text-sm font-inter text-gray-700">
+                <span className="text-sm font-body text-gray-700">
                   Yes, send me travel inspiration and Arsenal content
                 </span>
               </label>
@@ -203,12 +206,12 @@ const SubscribeGate = ({ onSubmit }) => {
                   onChange={handleChange}
                   className="mt-1 mr-3 w-5 h-5 text-arsenal-red border-gray-300 rounded focus:ring-arsenal-red"
                 />
-                <span className="text-sm font-inter text-gray-700">
+                <span className="text-sm font-body text-gray-700">
                   I agree to T&Cs and privacy policy <span className="text-arsenal-red">*</span>
                 </span>
               </label>
               {errors.termsConsent && (
-                <p className="text-sm text-red-500 font-inter">{errors.termsConsent}</p>
+                <p className="text-sm text-red-500 font-body">{errors.termsConsent}</p>
               )}
             </div>
 
@@ -217,12 +220,12 @@ const SubscribeGate = ({ onSubmit }) => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="w-full bg-arsenal-red text-white font-bebas text-3xl py-4 rounded-lg shadow-lg hover:bg-red-700 transition-colors"
+              className="w-full bg-arsenal-red text-white font-heading text-3xl py-4 rounded-lg shadow-lg hover:bg-red-700 transition-colors"
             >
               Reveal My Destination
             </motion.button>
 
-            <p className="text-center text-xs text-gray-500 font-inter">
+            <p className="text-center text-xs text-gray-500 font-body">
               Your information is secure and will never be shared with third parties
             </p>
           </form>

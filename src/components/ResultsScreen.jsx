@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaTwitter, FaFacebook, FaLinkedin, FaShareAlt, FaTrophy, FaMapMarkerAlt, FaCalendarAlt, FaPlane } from 'react-icons/fa';
 import { useState } from 'react';
+import Header from './Header';
 
 const ResultsScreen = ({ result, onRestart }) => {
   const [shareClicked, setShareClicked] = useState(false);
@@ -48,6 +49,8 @@ const ResultsScreen = ({ result, onRestart }) => {
       animate={{ opacity: 1 }}
       className="min-h-screen py-8 px-4"
     >
+      <Header />
+
       <div className="max-w-4xl mx-auto">
         {/* Hero Section */}
         <motion.div
@@ -57,11 +60,17 @@ const ResultsScreen = ({ result, onRestart }) => {
           className="relative bg-white rounded-2xl shadow-2xl overflow-hidden mb-8"
         >
           {/* Header with player and destination */}
-          <div className="relative h-64 md:h-96 bg-gradient-to-br from-arsenal-navy to-arsenal-red overflow-hidden">
-            <div className="absolute inset-0 bg-black/30 z-10" />
+          <div className="relative h-64 md:h-96 overflow-hidden">
+            {/* Destination Image Background */}
+            <img
+              src={destination.hero.image}
+              alt={destination.hero.alt}
+              className="absolute inset-0 w-full h-full object-cover z-0"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-arsenal-navy/70 to-arsenal-red/70 z-10" />
 
             {/* Decorative elements */}
-            <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 z-15">
               <div className="absolute top-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-3xl" />
               <div className="absolute bottom-10 left-10 w-40 h-40 bg-emirates-gold/20 rounded-full blur-3xl" />
             </div>
@@ -74,7 +83,7 @@ const ResultsScreen = ({ result, onRestart }) => {
                 className="mb-4"
               >
                 <div className="bg-white/20 backdrop-blur-sm rounded-full px-6 py-2">
-                  <span className="font-bebas text-2xl">{matchPercentage}% Match</span>
+                  <span className="font-heading text-2xl">{matchPercentage}% Match</span>
                 </div>
               </motion.div>
 
@@ -82,7 +91,7 @@ const ResultsScreen = ({ result, onRestart }) => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="text-5xl md:text-7xl font-bebas text-center mb-2"
+                className="text-5xl md:text-7xl font-heading text-center mb-2"
               >
                 {destination.name}
               </motion.h1>
@@ -91,7 +100,7 @@ const ResultsScreen = ({ result, onRestart }) => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="text-xl md:text-2xl font-inter text-center mb-6"
+                className="text-xl md:text-2xl font-body text-center mb-6"
               >
                 {destination.country}
               </motion.p>
@@ -102,10 +111,10 @@ const ResultsScreen = ({ result, onRestart }) => {
                 transition={{ delay: 0.7 }}
                 className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3"
               >
-                <p className="font-montserrat text-sm mb-1">Matched with</p>
-                <p className="font-bebas text-3xl">{destination.player.name}</p>
+                <p className="font-accent text-sm mb-1">Matched with</p>
+                <p className="font-heading text-3xl">{destination.player.name}</p>
                 {destination.player.number && (
-                  <p className="font-inter text-sm">#{destination.player.number} • {destination.player.position}</p>
+                  <p className="font-body text-sm">#{destination.player.number} • {destination.player.position}</p>
                 )}
               </motion.div>
             </div>
@@ -118,10 +127,10 @@ const ResultsScreen = ({ result, onRestart }) => {
             transition={{ delay: 0.9 }}
             className="p-8 bg-gradient-to-r from-gray-50 to-white border-l-4 border-arsenal-red"
           >
-            <p className="text-xl md:text-2xl font-inter italic text-gray-800">
+            <p className="text-xl md:text-2xl font-body italic text-gray-800">
               "{destination.player.quote}"
             </p>
-            <p className="mt-2 font-montserrat font-semibold text-arsenal-red">
+            <p className="mt-2 font-accent font-semibold text-arsenal-red">
               - {destination.player.name}
             </p>
           </motion.div>
@@ -134,14 +143,14 @@ const ResultsScreen = ({ result, onRestart }) => {
           transition={{ delay: 1.1 }}
           className="bg-white rounded-2xl shadow-lg p-8 mb-8"
         >
-          <h2 className="text-3xl font-bebas text-gray-900 mb-4 flex items-center">
+          <h2 className="text-3xl font-heading text-gray-900 mb-4 flex items-center">
             <FaTrophy className="mr-3 text-emirates-gold" />
             Your Travel Persona
           </h2>
-          <p className="text-xl font-montserrat font-semibold text-arsenal-red mb-3">
+          <p className="text-xl font-accent font-semibold text-arsenal-red mb-3">
             {destination.player.persona}
           </p>
-          <p className="text-lg font-inter text-gray-700 leading-relaxed">
+          <p className="text-lg font-body text-gray-700 leading-relaxed">
             {destination.personality}
           </p>
         </motion.div>
@@ -153,19 +162,19 @@ const ResultsScreen = ({ result, onRestart }) => {
           transition={{ delay: 1.2 }}
           className="bg-white rounded-2xl shadow-lg p-8 mb-8"
         >
-          <h2 className="text-3xl font-bebas text-gray-900 mb-6">
+          <h2 className="text-3xl font-heading text-gray-900 mb-6">
             What To Experience
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div>
-              <h3 className="font-montserrat font-semibold text-lg mb-3 flex items-center text-gray-800">
+              <h3 className="font-accent font-semibold text-lg mb-3 flex items-center text-gray-800">
                 <FaMapMarkerAlt className="mr-2 text-arsenal-red" />
                 Top Highlights
               </h3>
               <ul className="space-y-2">
                 {destination.highlights.map((highlight, index) => (
-                  <li key={index} className="flex items-start font-inter text-gray-700">
+                  <li key={index} className="flex items-start font-body text-gray-700">
                     <span className="text-arsenal-red mr-2 mt-1">•</span>
                     <span>{highlight}</span>
                   </li>
@@ -175,25 +184,25 @@ const ResultsScreen = ({ result, onRestart }) => {
 
             <div>
               <div className="mb-6">
-                <h3 className="font-montserrat font-semibold text-lg mb-2 flex items-center text-gray-800">
+                <h3 className="font-accent font-semibold text-lg mb-2 flex items-center text-gray-800">
                   <FaCalendarAlt className="mr-2 text-arsenal-red" />
                   Best Time to Visit
                 </h3>
-                <p className="font-inter text-gray-700">{destination.bestTime}</p>
+                <p className="font-body text-gray-700">{destination.bestTime}</p>
               </div>
 
               <div>
-                <h3 className="font-montserrat font-semibold text-lg mb-2 flex items-center text-gray-800">
+                <h3 className="font-accent font-semibold text-lg mb-2 flex items-center text-gray-800">
                   <FaPlane className="mr-2 text-emirates-red" />
                   Emirates Route
                 </h3>
-                <p className="font-inter text-gray-700">{destination.emiratesRoute}</p>
+                <p className="font-body text-gray-700">{destination.emiratesRoute}</p>
               </div>
             </div>
           </div>
 
           <div className="bg-gradient-to-r from-emirates-red/10 to-arsenal-red/10 rounded-lg p-6">
-            <p className="font-inter text-sm text-gray-700">
+            <p className="font-body text-sm text-gray-700">
               <span className="font-semibold">✈️ Special Offer:</span> Book your {destination.name} adventure with Emirates and earn bonus Skywards miles. Experience world-class service all the way to your destination.
             </p>
           </div>
@@ -206,11 +215,11 @@ const ResultsScreen = ({ result, onRestart }) => {
           transition={{ delay: 1.3 }}
           className="bg-gradient-to-r from-arsenal-red to-emirates-red rounded-2xl shadow-lg p-8 mb-8 text-white"
         >
-          <h2 className="text-3xl font-bebas mb-4">You've Unlocked a Reward!</h2>
-          <p className="text-xl font-inter mb-6">
+          <h2 className="text-3xl font-heading mb-4">You've Unlocked a Reward!</h2>
+          <p className="text-xl font-body mb-6">
             🎁 <strong>500 Emirates Skywards Miles</strong> added to your profile
           </p>
-          <p className="font-inter mb-6">
+          <p className="font-body mb-6">
             Share your result on social media to enter the draw for an all-expenses-paid trip to {destination.name}!
           </p>
 
@@ -218,7 +227,7 @@ const ResultsScreen = ({ result, onRestart }) => {
             {navigator.share && (
               <button
                 onClick={() => handleShare('native')}
-                className="flex items-center bg-white text-arsenal-red px-6 py-3 rounded-lg font-montserrat font-semibold hover:bg-gray-100 transition-colors"
+                className="flex items-center bg-white text-arsenal-red px-6 py-3 rounded-lg font-accent font-semibold hover:bg-gray-100 transition-colors"
               >
                 <FaShareAlt className="mr-2" />
                 Share
@@ -226,21 +235,21 @@ const ResultsScreen = ({ result, onRestart }) => {
             )}
             <button
               onClick={() => handleShare('twitter')}
-              className="flex items-center bg-white text-[#1DA1F2] px-6 py-3 rounded-lg font-montserrat font-semibold hover:bg-gray-100 transition-colors"
+              className="flex items-center bg-white text-[#1DA1F2] px-6 py-3 rounded-lg font-accent font-semibold hover:bg-gray-100 transition-colors"
             >
               <FaTwitter className="mr-2" />
               Twitter
             </button>
             <button
               onClick={() => handleShare('facebook')}
-              className="flex items-center bg-white text-[#4267B2] px-6 py-3 rounded-lg font-montserrat font-semibold hover:bg-gray-100 transition-colors"
+              className="flex items-center bg-white text-[#4267B2] px-6 py-3 rounded-lg font-accent font-semibold hover:bg-gray-100 transition-colors"
             >
               <FaFacebook className="mr-2" />
               Facebook
             </button>
             <button
               onClick={() => handleShare('linkedin')}
-              className="flex items-center bg-white text-[#0077B5] px-6 py-3 rounded-lg font-montserrat font-semibold hover:bg-gray-100 transition-colors"
+              className="flex items-center bg-white text-[#0077B5] px-6 py-3 rounded-lg font-accent font-semibold hover:bg-gray-100 transition-colors"
             >
               <FaLinkedin className="mr-2" />
               LinkedIn
@@ -251,7 +260,7 @@ const ResultsScreen = ({ result, onRestart }) => {
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-4 font-inter text-sm"
+              className="mt-4 font-body text-sm"
             >
               ✓ Thanks for sharing! You're entered into the draw.
             </motion.p>
@@ -265,7 +274,7 @@ const ResultsScreen = ({ result, onRestart }) => {
           transition={{ delay: 1.4 }}
           className="bg-white rounded-2xl shadow-lg p-8 text-center"
         >
-          <h2 className="text-3xl font-bebas text-gray-900 mb-6">
+          <h2 className="text-3xl font-heading text-gray-900 mb-6">
             Ready for Your Next Adventure?
           </h2>
 
@@ -274,19 +283,19 @@ const ResultsScreen = ({ result, onRestart }) => {
               href="https://www.emirates.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-emirates-red text-white px-8 py-4 rounded-lg font-bebas text-2xl hover:bg-red-700 transition-colors"
+              className="bg-emirates-red text-white px-8 py-4 rounded-lg font-heading text-2xl hover:bg-red-700 transition-colors"
             >
               Book with Emirates
             </a>
             <button
               onClick={onRestart}
-              className="bg-gray-200 text-gray-800 px-8 py-4 rounded-lg font-bebas text-2xl hover:bg-gray-300 transition-colors"
+              className="bg-gray-200 text-gray-800 px-8 py-4 rounded-lg font-heading text-2xl hover:bg-gray-300 transition-colors"
             >
               Take Quiz Again
             </button>
           </div>
 
-          <p className="font-inter text-sm text-gray-600">
+          <p className="font-body text-sm text-gray-600">
             Follow Arsenal x Emirates for more exclusive activations and travel experiences
           </p>
         </motion.div>

@@ -19,9 +19,9 @@ export default {
         }
       },
       fontFamily: {
-        'bebas': ['"Bebas Neue"', 'cursive'],
-        'inter': ['Inter', 'sans-serif'],
-        'montserrat': ['Montserrat', 'sans-serif']
+        'heading': ['Anton', 'Oswald', 'sans-serif'],
+        'body': ['Arsenal', 'sans-serif'],
+        'accent': ['Oswald', 'sans-serif']
       }
     },
   },

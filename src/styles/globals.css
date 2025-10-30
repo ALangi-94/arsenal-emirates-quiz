@@ -9,17 +9,20 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Arsenal', sans-serif;
   background: linear-gradient(135deg, #023474 0%, #EF0107 100%);
   min-height: 100vh;
 }
 
 h1, h2, h3 {
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Anton', 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .accent-text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
 }
 
 /* Custom scrollbar */
