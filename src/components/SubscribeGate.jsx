@@ -14,6 +14,10 @@ const SubscribeGate = ({ onSubmit }) => {
   });
 
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
+
+  const SUBSTACK_URL = 'https://thesportsstack.substack.com';
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -49,11 +53,58 @@ const SubscribeGate = ({ onSubmit }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const subscribeToSubstack = async (email) => {
+    try {
+      const response = await fetch(`${SUBSTACK_URL}/api/v1/free`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          first_url: window.location.href,
+          first_referrer: document.referrer,
+          current_url: window.location.href,
+        }),
+      });
+
+      if (response.ok) {
+        return { success: true };
+      } else {
+        return { success: false, error: 'Failed to subscribe' };
+      }
+    } catch (error) {
+      console.error('Substack subscription error:', error);
+      // If CORS error, we'll still proceed to show results
+      // The user can manually subscribe via the link
+      return { success: false, error: 'CORS error - will show Substack link' };
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validate()) {
-      onSubmit(formData);
+      setIsSubmitting(true);
+      setSubmitStatus(null);
+
+      // Try to subscribe to Substack
+      const result = await subscribeToSubstack(formData.email);
+
+      if (result.success) {
+        setSubmitStatus('success');
+      } else {
+        // Even if Substack fails, we still show the results
+        // User can manually subscribe from the results page
+        setSubmitStatus('partial');
+      }
+
+      setIsSubmitting(false);
+
+      // Wait a moment to show success message, then proceed
+      setTimeout(() => {
+        onSubmit(formData);
+      }, 1000);
     }
   };
 
@@ -215,18 +266,42 @@ const SubscribeGate = ({ onSubmit }) => {
               )}
             </div>
 
+            {/* Status messages */}
+            {submitStatus === 'success' && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-green-50 border-2 border-green-500 text-green-700 p-4 rounded-lg font-body text-center"
+              >
+                ✓ Successfully subscribed to The Sports Stack!
+              </motion.div>
+            )}
+
+            {submitStatus === 'partial' && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-yellow-50 border-2 border-yellow-500 text-yellow-700 p-3 rounded-lg font-body text-sm text-center"
+              >
+                Note: Subscribe manually at <a href={SUBSTACK_URL} target="_blank" rel="noopener noreferrer" className="underline font-semibold">The Sports Stack</a>
+              </motion.div>
+            )}
+
             {/* Submit button */}
             <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+              whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
               type="submit"
-              className="w-full bg-arsenal-red text-white font-heading text-3xl py-4 rounded-lg shadow-lg hover:bg-red-700 transition-colors"
+              disabled={isSubmitting}
+              className={`w-full bg-arsenal-red text-white font-heading text-3xl py-4 rounded-lg shadow-lg transition-colors ${
+                isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-red-700'
+              }`}
             >
-              Reveal My Destination
+              {isSubmitting ? 'Subscribing...' : 'Reveal My Destination'}
             </motion.button>
 
             <p className="text-center text-xs text-gray-500 font-body">
-              Your information is secure and will never be shared with third parties
+              You'll be subscribed to The Sports Stack newsletter • Your information is secure
             </p>
           </form>
         </div>
