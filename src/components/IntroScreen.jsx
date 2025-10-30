@@ -46,7 +46,7 @@ const IntroScreen = ({ onStart }) => {
               transition={{ delay: 0.8 }}
               className="text-xl md:text-2xl font-body text-white/90 text-center"
             >
-              Discover where your next adventure awaits, as matched by Arsenal stars
+              Discover your perfect destination and the Arsenal star who agrees
             </motion.p>
           </div>
         </div>
