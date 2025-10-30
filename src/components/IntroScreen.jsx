@@ -44,10 +44,22 @@ const IntroScreen = ({ onStart }) => {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="text-xl md:text-2xl font-body text-white/90 text-center"
+              className="text-xl md:text-2xl font-body text-white/90 text-center mb-6"
             >
               Discover your perfect destination and the Arsenal star who agrees
             </motion.p>
+
+            <motion.button
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={onStart}
+              className="mx-auto bg-white text-arsenal-red font-heading text-2xl md:text-3xl py-3 px-12 rounded-lg shadow-2xl hover:bg-gray-100 transition-colors uppercase"
+            >
+              Start Quiz
+            </motion.button>
           </div>
         </div>
 
@@ -64,76 +76,51 @@ const IntroScreen = ({ onStart }) => {
               initial={{ scale: 0.95, opacity: 0, y: -20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
-              className="relative bg-gradient-to-r from-emirates-gold via-yellow-400 to-emirates-gold p-6 md:p-8 rounded-2xl shadow-2xl border-4 border-yellow-300 mb-8 overflow-hidden"
+              className="relative bg-gradient-to-r from-[#C4A574]/20 via-[#D4AF37]/15 to-[#C4A574]/20 p-6 md:p-8 rounded-xl shadow-lg border-2 border-[#C4A574]/30 mb-8 overflow-hidden"
             >
-              {/* Animated background elements */}
-              <div className="absolute inset-0 overflow-hidden">
-                <motion.div
-                  animate={{
-                    rotate: [0, 360],
-                    scale: [1, 1.2, 1]
-                  }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"
-                />
-                <motion.div
-                  animate={{
-                    rotate: [360, 0],
-                    scale: [1, 1.3, 1]
-                  }}
-                  transition={{
-                    duration: 15,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"
-                />
-              </div>
-
               <div className="relative z-10">
                 <motion.div
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="text-center mb-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.4 }}
+                  className="text-center"
                 >
-                  <div className="text-5xl md:text-6xl mb-2">🏆</div>
-                  <h2 className="text-3xl md:text-4xl font-heading text-gray-900 mb-2">
-                    WIN BIG!
+                  <h2 className="text-2xl md:text-3xl font-heading text-gray-900 mb-4">
+                    COMPLETE THE QUIZ TO WIN
                   </h2>
                 </motion.div>
 
-                <div className="space-y-3 text-center">
-                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                    <p className="text-xl md:text-2xl font-heading text-arsenal-red mb-1">
-                      ✈️ ALL-EXPENSES-PAID TRIP
+                <div className="grid md:grid-cols-2 gap-4">
+                  <motion.div
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 1.6 }}
+                    className="bg-white/80 backdrop-blur-sm rounded-lg p-5 shadow-md border border-[#C4A574]/20"
+                  >
+                    <p className="text-xl md:text-2xl lg:text-3xl font-heading text-arsenal-red text-center leading-tight">
+                      ALL-EXPENSES-PAID TRIP TO YOUR MATCHED DESTINATION
                     </p>
-                    <p className="text-base md:text-lg font-body text-gray-800">
-                      To your dream destination!
-                    </p>
-                  </div>
+                  </motion.div>
 
-                  <div className="text-2xl font-heading text-gray-900">OR</div>
-
-                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                    <p className="text-xl md:text-2xl font-heading text-arsenal-red mb-1">
-                      👕 SIGNED ARSENAL HOME KIT
+                  <motion.div
+                    initial={{ x: 20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 1.8 }}
+                    className="bg-white/80 backdrop-blur-sm rounded-lg p-5 shadow-md border border-[#C4A574]/20"
+                  >
+                    <p className="text-xl md:text-2xl lg:text-3xl font-heading text-arsenal-red text-center leading-tight">
+                      MATCH-WORN SIGNED ARSENAL HOME KIT
                     </p>
-                    <p className="text-base md:text-lg font-body text-gray-800">
-                      Match-worn and signed by the squad!
-                    </p>
-                  </div>
+                  </motion.div>
                 </div>
 
                 <motion.p
-                  animate={{ opacity: [0.7, 1, 0.7] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="text-center text-sm md:text-base font-body font-bold text-gray-900 mt-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2 }}
+                  className="text-center text-sm md:text-base font-body text-gray-700 mt-4"
                 >
-                  🎁 Complete the quiz to enter the draw! 🎁
+                  Complete and share to enter the prize draw
                 </motion.p>
               </div>
             </motion.div>
