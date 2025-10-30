@@ -59,11 +59,90 @@ const IntroScreen = ({ onStart }) => {
             transition={{ delay: 1 }}
             className="space-y-6"
           >
+            {/* Prize Banner */}
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: -20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
+              className="relative bg-gradient-to-r from-emirates-gold via-yellow-400 to-emirates-gold p-6 md:p-8 rounded-2xl shadow-2xl border-4 border-yellow-300 mb-8 overflow-hidden"
+            >
+              {/* Animated background elements */}
+              <div className="absolute inset-0 overflow-hidden">
+                <motion.div
+                  animate={{
+                    rotate: [0, 360],
+                    scale: [1, 1.2, 1]
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"
+                />
+                <motion.div
+                  animate={{
+                    rotate: [360, 0],
+                    scale: [1, 1.3, 1]
+                  }}
+                  transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"
+                />
+              </div>
+
+              <div className="relative z-10">
+                <motion.div
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-center mb-4"
+                >
+                  <div className="text-5xl md:text-6xl mb-2">🏆</div>
+                  <h2 className="text-3xl md:text-4xl font-heading text-gray-900 mb-2">
+                    WIN BIG!
+                  </h2>
+                </motion.div>
+
+                <div className="space-y-3 text-center">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+                    <p className="text-xl md:text-2xl font-heading text-arsenal-red mb-1">
+                      ✈️ ALL-EXPENSES-PAID TRIP
+                    </p>
+                    <p className="text-base md:text-lg font-body text-gray-800">
+                      To your dream destination!
+                    </p>
+                  </div>
+
+                  <div className="text-2xl font-heading text-gray-900">OR</div>
+
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+                    <p className="text-xl md:text-2xl font-heading text-arsenal-red mb-1">
+                      👕 SIGNED ARSENAL HOME KIT
+                    </p>
+                    <p className="text-base md:text-lg font-body text-gray-800">
+                      Match-worn and signed by the squad!
+                    </p>
+                  </div>
+                </div>
+
+                <motion.p
+                  animate={{ opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-center text-sm md:text-base font-body font-bold text-gray-900 mt-4"
+                >
+                  🎁 Complete the quiz to enter the draw! 🎁
+                </motion.p>
+              </div>
+            </motion.div>
+
             {/* Disclaimer */}
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 1.2 }}
+              transition={{ delay: 1.4 }}
               className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-4 mb-6"
             >
               <p className="text-sm md:text-base font-body text-gray-800 text-center">
@@ -105,7 +184,7 @@ const IntroScreen = ({ onStart }) => {
                 </li>
                 <li className="flex items-start">
                   <span className="text-arsenal-red mr-2">✓</span>
-                  <span>Enter to win an all-expenses-paid trip</span>
+                  <span>500 bonus Emirates Skywards miles added to your profile</span>
                 </li>
               </ul>
             </div>
