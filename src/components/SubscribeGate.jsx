@@ -62,9 +62,9 @@ const SubscribeGate = ({ onSubmit }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen flex flex-col p-4"
+      className="min-h-screen flex flex-col p-2 md:p-4"
     >
-      <Header />
+      <Header compact />
 
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}

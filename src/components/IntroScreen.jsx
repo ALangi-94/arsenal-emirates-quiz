@@ -10,27 +10,45 @@ const IntroScreen = ({ onStart }) => {
       className="min-h-screen flex flex-col items-center justify-center p-4"
     >
       <div className="max-w-4xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden">
-        {/* Header with logos */}
-        <div className="bg-gradient-to-r from-arsenal-red to-emirates-red p-8">
-          <Header />
-
-          <motion.h1
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="text-5xl md:text-7xl font-heading text-white text-center mb-4"
+        {/* Header with hero image and logos */}
+        <div className="relative">
+          {/* Hero Image */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative h-64 md:h-80 overflow-hidden"
           >
-            Find Your Perfect Destination
-          </motion.h1>
+            <img
+              src="/images/hero-intro.jpg"
+              alt="Arsenal x Emirates"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent" />
+          </motion.div>
 
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="text-xl md:text-2xl font-body text-white/90 text-center"
-          >
-            Discover where your next adventure awaits, as matched by Arsenal stars
-          </motion.p>
+          {/* Logos and Text Section */}
+          <div className="bg-gradient-to-r from-arsenal-red to-emirates-red p-8">
+            <Header />
+
+            <motion.h1
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="text-5xl md:text-7xl font-heading text-white text-center mb-4 mt-4"
+            >
+              Find Your Perfect Destination
+            </motion.h1>
+
+            <motion.p
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="text-xl md:text-2xl font-body text-white/90 text-center"
+            >
+              Discover where your next adventure awaits, as matched by Arsenal stars
+            </motion.p>
+          </div>
         </div>
 
         {/* Content */}
