@@ -60,7 +60,7 @@ const ResultsScreen = ({ result, onRestart }) => {
           className="relative bg-white rounded-2xl shadow-2xl overflow-hidden mb-8"
         >
           {/* Header with player and destination */}
-          <div className="relative h-64 md:h-96 overflow-hidden">
+          <div className="relative min-h-[400px] md:h-96 overflow-hidden">
             {/* Destination Image Background */}
             <img
               src={destination.hero.image}
@@ -75,15 +75,15 @@ const ResultsScreen = ({ result, onRestart }) => {
               <div className="absolute bottom-10 left-10 w-40 h-40 bg-emirates-gold/20 rounded-full blur-3xl" />
             </div>
 
-            <div className="relative z-20 h-full flex flex-col items-center justify-center text-white p-8">
+            <div className="relative z-20 h-full flex flex-col items-center justify-center text-white p-6 md:p-8 py-8">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.3, type: "spring" }}
-                className="mb-4"
+                className="mb-3 md:mb-4"
               >
-                <div className="bg-white/20 backdrop-blur-sm rounded-full px-6 py-2">
-                  <span className="font-heading text-2xl">{matchPercentage}% Match</span>
+                <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 md:px-6 py-2">
+                  <span className="font-heading text-xl md:text-2xl">{matchPercentage}% Match</span>
                 </div>
               </motion.div>
 
@@ -91,7 +91,7 @@ const ResultsScreen = ({ result, onRestart }) => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="text-5xl md:text-7xl font-heading text-center mb-2"
+                className="text-4xl md:text-7xl font-heading text-center mb-2"
               >
                 {destination.name}
               </motion.h1>
@@ -100,7 +100,7 @@ const ResultsScreen = ({ result, onRestart }) => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="text-xl md:text-2xl font-body text-center mb-6"
+                className="text-lg md:text-2xl font-body text-center mb-4 md:mb-6"
               >
                 {destination.country}
               </motion.p>
@@ -109,12 +109,12 @@ const ResultsScreen = ({ result, onRestart }) => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.7 }}
-                className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3"
+                className="bg-white/10 backdrop-blur-sm rounded-lg px-4 md:px-6 py-3"
               >
-                <p className="font-accent text-sm mb-1">Matched with</p>
-                <p className="font-heading text-3xl">{destination.player.name}</p>
+                <p className="font-accent text-xs md:text-sm mb-1">Matched with</p>
+                <p className="font-heading text-2xl md:text-3xl">{destination.player.name}</p>
                 {destination.player.number && (
-                  <p className="font-body text-sm">#{destination.player.number} • {destination.player.position}</p>
+                  <p className="font-body text-xs md:text-sm">#{destination.player.number} • {destination.player.position}</p>
                 )}
               </motion.div>
             </div>
