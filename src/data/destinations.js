@@ -37,19 +37,19 @@ export const destinations = [
     name: "Tokyo",
     country: "Japan",
     player: {
-      name: "Takehiro Tomiyasu",
-      number: 18,
-      position: "Defender",
+      name: "Viktor Gyökeres",
+      number: 14,
+      position: "Striker",
       persona: "The Perfectionist, Cultural",
       quote: "Tokyo is where discipline meets creativity - every detail matters, just like in football.",
-      image: "/images/players/tomiyasu.jpg"
+      image: "/images/players/gyokeres.jpg"
     },
     hero: {
       image: "/images/destinations/tokyo.jpg",
       alt: "Tokyo city with Mount Fuji"
     },
     description: "Immerse yourself in a city where ancient tradition seamlessly blends with cutting-edge technology.",
-    personality: "You're detail-oriented and appreciate perfection in every aspect. Like Tomiyasu's defensive precision, you value discipline, quality, and cultural authenticity.",
+    personality: "You're detail-oriented and appreciate perfection in every aspect. Like Gyökeres's striking precision, you value discipline, quality, and cultural authenticity.",
     traits: {
       energy: 3,
       luxury: 2,
