@@ -109,13 +109,22 @@ const ResultsScreen = ({ result, onRestart }) => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.7 }}
-                className="bg-white/10 backdrop-blur-sm rounded-lg px-4 md:px-6 py-3"
+                className="bg-white/10 backdrop-blur-sm rounded-lg px-4 md:px-6 py-3 flex items-center gap-4"
               >
-                <p className="font-accent text-xs md:text-sm mb-1">Matched with</p>
-                <p className="font-heading text-2xl md:text-3xl">{destination.player.name}</p>
-                {destination.player.number && (
-                  <p className="font-body text-xs md:text-sm">#{destination.player.number} • {destination.player.position}</p>
-                )}
+                <div className="flex-shrink-0">
+                  <img
+                    src={destination.player.image}
+                    alt={destination.player.name}
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-white/30"
+                  />
+                </div>
+                <div>
+                  <p className="font-accent text-xs md:text-sm mb-1">Matched with</p>
+                  <p className="font-heading text-2xl md:text-3xl">{destination.player.name}</p>
+                  {destination.player.number && (
+                    <p className="font-body text-xs md:text-sm">#{destination.player.number} • {destination.player.position}</p>
+                  )}
+                </div>
               </motion.div>
             </div>
           </div>

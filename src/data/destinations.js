@@ -42,7 +42,7 @@ export const destinations = [
       position: "Striker",
       persona: "The Perfectionist, Cultural",
       quote: "Tokyo is where discipline meets creativity - every detail matters, just like in football.",
-      image: "/images/players/gyokeres.jpg"
+      image: "/images/players/gyokores.jpg"
     },
     hero: {
       image: "/images/destinations/tokyo.jpg",
